@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic"; // Force revalidation on every request
+export const revalidate = 0; // Disable static generation for this page
+
 import React from "react";
 import prisma from "@/lib/prisma";
 import { TodoGrid } from "@/todos/components";

@@ -3,22 +3,23 @@
 import React from "react";
 import { Todo } from "@prisma/client";
 import { TodoItem } from "./TodoItem";
-import * as api from "@/todos/helpers/todos";
-import { useRouter } from "next/navigation";
+// import * as api from "@/todos/helpers/todos";
+// import { useRouter } from "next/navigation";
+import { toggleTodo } from "../actions/todo-actions";
 
 interface Props {
   todos?: Todo[];
 }
 
 export const TodoGrid = ({ todos }: Props) => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const toggleTodo = (id: string, completed: boolean) => {
-    const updatedTodo = api.updateTodo(id, completed);
-    router.refresh();
+  // const toggleTodo = (id: string, completed: boolean) => {
+  //   const updatedTodo = api.updateTodo(id, completed);
+  //   router.refresh();
 
-    return updatedTodo;
-  };
+  //   return updatedTodo;
+  // };
 
   return (
     <div className="grid grid-cols-1  sm:grid-cols-3 gap-2">
