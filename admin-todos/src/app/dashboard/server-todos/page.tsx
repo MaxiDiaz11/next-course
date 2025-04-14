@@ -5,6 +5,8 @@ import React from "react";
 import prisma from "@/lib/prisma";
 import { TodoGrid } from "@/todos/components";
 import { NewTodo } from "@/components";
+import { getUserServerSession } from "@/auth/actions/auth-actions";
+import { redirect } from "next/navigation";
 
 const ServerTodosPage = async () => {
   // useEffect(() => {
@@ -15,7 +17,16 @@ const ServerTodosPage = async () => {
   //   });
   // }, []);
 
-  const todos = await prisma.todo.findMany({ orderBy: { description: "asc" } });
+  const user = await getUserServerSession();
+
+  if (!user) redirect("/api/auth/signin");
+
+  const todos = await prisma.todo.findMany({
+    orderBy: { description: "asc" },
+    where: {
+      userId: user.id,
+    },
+  });
 
   return (
     <>
